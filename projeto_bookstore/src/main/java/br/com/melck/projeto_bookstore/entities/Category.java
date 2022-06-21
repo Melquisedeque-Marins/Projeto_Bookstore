@@ -3,12 +3,12 @@ package br.com.melck.projeto_bookstore.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
 
 
 @Entity
@@ -18,8 +18,7 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String category;
-    private String subCategory;
-
+   
     @OneToMany(mappedBy = "category")
     private List<Book> books = new ArrayList<>();
 
@@ -28,11 +27,9 @@ public class Category implements Serializable {
 
     
 
-    public Category(Long id, String category, String subCategory) {
+    public Category(Long id, String category) {
         this.id = id;
         this.category = category;
-        this.subCategory = subCategory;
-
     }
 
 
@@ -52,19 +49,6 @@ public class Category implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     }
-
-   
-    
-    public String getSubCategory() {
-        return subCategory;
-    }
-
-
-    public void setSubCategory(String subCategory) {
-        this.subCategory = subCategory;
-    }
-
-
 
     public List<Book> getBooks() {
         return books;
