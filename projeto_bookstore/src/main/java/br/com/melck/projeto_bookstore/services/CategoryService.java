@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.melck.projeto_bookstore.entities.Category;
 import br.com.melck.projeto_bookstore.repositories.CategoryRepository;
+import br.com.melck.projeto_bookstore.resources.dtos.CategoryDTO;
 import br.com.melck.projeto_bookstore.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -27,6 +28,12 @@ public class CategoryService {
 
     public Category create(Category obj){
         obj.setId(null);
+        return categoryRepository.save(obj);
+    }
+
+    public Category update(Long id, CategoryDTO objDTO) {
+        Category obj = findById(id);
+        obj.setCategory(objDTO.getCategory());
         return categoryRepository.save(obj);
     }
 }

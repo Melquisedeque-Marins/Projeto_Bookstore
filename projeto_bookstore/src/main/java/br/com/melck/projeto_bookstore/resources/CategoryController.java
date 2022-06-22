@@ -7,8 +7,10 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,4 +48,18 @@ public class CategoryController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
       return ResponseEntity.created(uri).build(); 
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody CategoryDTO objDTO){
+          Category newObj = categoryService.update(id, objDTO);
+        return ResponseEntity.ok().body(new CategoryDTO(newObj));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<CategoryDTO> updatePatch(@PathVariable Long id, @RequestBody CategoryDTO objDTO){
+          Category newObj = categoryService.update(id, objDTO);
+        return ResponseEntity.ok().body(new CategoryDTO(newObj));
+    }
+
+
 }
