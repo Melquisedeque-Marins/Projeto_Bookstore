@@ -1,5 +1,6 @@
 package br.com.melck.projeto_bookstore.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,9 @@ public class CategoryService {
     public Category findById(Long id){
         Optional<Category> obj = categoryRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto id:" + id + " não foi encontrado"));
+    }
+
+    public List<Category> findAll() {
+        return categoryRepository.findAll();
     }
 }

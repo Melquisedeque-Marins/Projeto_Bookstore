@@ -1,25 +1,27 @@
-package br.com.melck.projeto_bookstore.repositories.exceptions;
+package br.com.melck.projeto_bookstore.resources.exceptions;
+
+import java.time.Instant;
 
 public class StandardError {
 
-    private Long timestamp;
+    private Instant timestamp;
     private Integer status;
     private String error;
 
     public StandardError() {
     }
     
-    public StandardError(Long timestamp, Integer status, String error) {
+    public StandardError(Instant timestamp, Integer status, String error) {
         this.timestamp = timestamp;
         this.status = status;
         this.error = error;
     }
 
-    public Long getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Long timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 
