@@ -1,8 +1,10 @@
 package br.com.melck.projeto_bookstore.resources.dtos;
 
+import java.io.Serializable;
+
 import br.com.melck.projeto_bookstore.entities.Book;
 
-public class BookDTO {
+public class BookDTO implements Serializable {
     
     private Long id;
     private String title;
