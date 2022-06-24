@@ -1,15 +1,16 @@
 package br.com.melck.projeto_bookstore.services;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import br.com.melck.projeto_bookstore.entities.Category;
 import br.com.melck.projeto_bookstore.repositories.CategoryRepository;
 import br.com.melck.projeto_bookstore.resources.dtos.CategoryDTO;
+import br.com.melck.projeto_bookstore.services.exceptions.DataIntegrityViolationException;
 import br.com.melck.projeto_bookstore.services.exceptions.ObjectNotFoundException;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
 
 @Service
 public class CategoryService {
@@ -39,6 +40,11 @@ public class CategoryService {
     
     public void delete(Long id) {
         findById(id);
-        categoryRepository.deleteById(id);
+        try { 
+            categoryRepository.deleteById(id);  
+        } catch (org.springframework.dao.DataIntegrityViolationException e) {
+            throw new DataIntegrityViolationException
+            ("Esta categoria possui objetos associados e não pode ser deletada ");
+        }
     }
 }
