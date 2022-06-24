@@ -36,4 +36,9 @@ public class CategoryService {
         obj.setCategory(objDTO.getCategory());
         return categoryRepository.save(obj);
     }
+    
+    public void delete(Long id) {
+        findById(id);
+        categoryRepository.deleteById(id);
+    }
 }
