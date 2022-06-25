@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,9 +18,17 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @NotEmpty(message = "o campo titulo é obrigatório")
+    @Length(min = 5, max = 50, message = "o titulo do livro deve ter entre 1 e 50 caracteres")
     private String title;
+
+    @NotEmpty(message = "o campo autor é obrigatório")
+    @Length(min = 5, max = 50, message = "o campo autor do livro deve ter entre 5 e 50 caracteres")
     private String author;
+
     private Integer pages;
+
     private Integer publicated;
        
     @JsonIgnore
